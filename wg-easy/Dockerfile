@@ -1,9 +1,10 @@
 FROM ghcr.io/wg-easy/wg-easy:15
 
-# Add tools to parse options and determine host IP when needed
-RUN apk add --no-cache jq bash iproute2 curl
+# Add tools required by the HA wrapper
+RUN apk add --no-cache jq bash iproute2 curl && \
+    update-alternatives --set iptables /usr/sbin/iptables-nft && \
+    update-alternatives --set ip6tables /usr/sbin/ip6tables-nft
 
-# Wrapper script to map HA options to WG-Easy env vars and start the app
 COPY rootfs/run.sh /run.sh
 RUN chmod +x /run.sh
 
