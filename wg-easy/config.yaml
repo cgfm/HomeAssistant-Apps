@@ -1,6 +1,6 @@
 name: WG-Easy
 slug: wg_easy
-version: "0.2.1"
+version: "0.2.2"
 description: Simple WireGuard VPN manager with Web UI (WG-Easy)
 url: https://github.com/cgfm/WG-Easy-AddOn
 arch:
@@ -18,16 +18,12 @@ devices:
 map:
   - data:rw
 
-# Web UI lives on 51821 by default
-webui: http://[HOST]:[PORT:51821]
-
 # Ingress/Sidebar
 ingress: true
-ingress_port: 51821
+ingress_port: 0
 ingress_stream: true
 panel_icon: mdi:vpn
 panel_title: WG-Easy
-watchdog: http://[HOST]:[PORT:51821]
 
 # Store visuals
 icon: wireguard.png
