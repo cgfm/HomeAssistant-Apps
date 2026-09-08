@@ -1,6 +1,6 @@
 name: WG-Easy
 slug: wg_easy
-version: "0.2.3"
+version: "0.2.4"
 description: Simple WireGuard VPN manager with Web UI (WG-Easy)
 url: https://github.com/cgfm/WG-Easy-AddOn
 arch:
