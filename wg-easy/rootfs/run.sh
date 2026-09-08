@@ -19,7 +19,13 @@ read_opt() {
 }
 
 # PORT is required by the new WG-Easy
-export PORT="51821"
+INGRESS_PORT="$(
+  curl -fsSL \
+    -H "Authorization: Bearer ${SUPERVISOR_TOKEN}" \
+    http://supervisor/addons/self/info |
+    jq -r '.data.ingress_port'
+)"
+export PORT="${INGRESS_PORT}"
 
 # Map HA options to new WG-Easy INIT_* env vars
 INIT_HOST_VAL="$(read_opt wg_host "")"
