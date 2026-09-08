@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.4
+
+- Fixed nftables backend registration for Home Assistant OS.
+- Registered `iptables-nft` and `ip6tables-nft` before selecting them.
+- Fixed build failure caused by unregistered update-alternatives entries.
+
 ## 0.2.3
 
 - Switched iptables backend from legacy to nftables for compatibility with current Home Assistant OS kernels.
