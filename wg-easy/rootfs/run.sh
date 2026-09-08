@@ -26,6 +26,7 @@ INGRESS_PORT="$(
     jq -r '.data.ingress_port'
 )"
 export PORT="${INGRESS_PORT}"
+export INSECURE="true"
 
 # Map HA options to new WG-Easy INIT_* env vars
 INIT_HOST_VAL="$(read_opt wg_host "")"
