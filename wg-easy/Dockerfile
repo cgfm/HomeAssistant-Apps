@@ -1,4 +1,4 @@
-FROM ghcr.io/wg-easy/wg-easy:latest
+FROM ghcr.io/wg-easy/wg-easy:15
 
 # Add tools to parse options and determine host IP when needed
 RUN apk add --no-cache jq bash iproute2
