@@ -1,5 +1,15 @@
 # Home Assistant Add-on: Komodo Periphery
 
+> [!WARNING]
+> **Deprecated and no longer maintained.** Support and updates for this add-on have ended. Komodo v2 support is not planned.
+
+## Migrating to Komodo v2
+
+Komodo v2 uses versioned image tags such as `:2`. This add-on builds from `:latest`, which does not receive Komodo v2 releases. The add-on’s `2.x` version is separate from the upstream Komodo version.
+
+- Follow the [official Komodo v2 upgrade guide](https://komo.do/docs/releases/v2.0.0#upgrading-to-komodo-v2) to upgrade Core and Periphery.
+- For Home Assistant, @dafik shared a [community Periphery add-on for Komodo v2](https://github.com/dafik/Hassio-Addons/tree/main/komodo-periphery) in [issue #3](https://github.com/cgfm/Komodo-Periphery-Addon/issues/3). It is a separate, independently maintained add-on. Follow its onboarding and configuration instructions.
+
 ![Supports aarch64 Architecture][aarch64-shield]
 ![Supports amd64 Architecture][amd64-shield]
 
@@ -8,8 +18,6 @@ _Komodo Periphery Server - Manages containers on remote servers_
 ## About
 
 This Home Assistant Add-on provides the Komodo Periphery server, which allows you to manage Docker containers on remote servers through the Komodo platform. The Periphery server acts as an agent that connects to a Komodo Core server and executes container management tasks.
-
-**Note:** This add-on automatically uses the latest stable version of Komodo Periphery from the official upstream repository. The add-on version number (2.x) is independent of the underlying Komodo Periphery version to provide clear versioning for the Home Assistant integration.
 
 ## Features
 
@@ -77,10 +85,6 @@ ssl_enabled: true
 - **Port 8120**: Komodo Periphery web interface and API
 - **Docker Socket**: Access to `/var/run/docker.sock` for container management
 - **Outbound Connection**: To Komodo Core server (if configured)
-
-## Support
-
-Got questions? [Open an issue](https://github.com/cgfm/Komodo-Periphery-Addon/issues)
 
 [aarch64-shield]: https://img.shields.io/badge/aarch64-yes-green.svg
 [amd64-shield]: https://img.shields.io/badge/amd64-yes-green.svg

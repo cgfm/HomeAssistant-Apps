@@ -20,7 +20,7 @@ To get started, you need to add this repository to your Home Assistant instance.
 Here are the add-ons currently available in this repository:
 
 *   **Internxt WebDAV**: A WebDAV server for Internxt cloud storage.
-*   **Komodo Periphery**: The Komodo Periphery Server, which manages containers on remote servers.
+*   **[Komodo Periphery](komodo-periphery/) (deprecated)**: Maintenance has ended. See the add-on documentation for Komodo v2 migration options.
 *   **Unbound**: A validating, recursive, and caching DNS resolver.
 *   **WG-Easy**: A simple WireGuard VPN manager with a web UI.
 *   **Komodo Core**: (Under development)
