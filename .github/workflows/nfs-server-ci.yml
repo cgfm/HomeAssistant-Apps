@@ -5,12 +5,14 @@ name: NFS server CI
     paths:
       - "NFS-Ganesha-App/**"
       - ".github/workflows/nfs-server-ci.yml"
+      - ".github/workflows/nfs-server-release.yml"
   push:
     branches:
       - master
     paths:
       - "NFS-Ganesha-App/**"
       - ".github/workflows/nfs-server-ci.yml"
+      - ".github/workflows/nfs-server-release.yml"
 
 permissions:
   contents: read
