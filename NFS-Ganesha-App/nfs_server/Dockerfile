@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1.7@sha256:a57df69d0ea827fb7266491f2813635de6f17269be881f696fbfdf2d83dda33e
-ARG BUILD_FROM=ghcr.io/home-assistant/base-debian:trixie-2026.06.1@sha256:3256be70f2e53c1b259e45fdc938ef4ca709623eadbf9cbabd5ed99ef644188b
+ARG BUILD_FROM=ghcr.io/home-assistant/base-debian:trixie-2026.11.0@sha256:d996c8f8ef0096a1ac3756766149b31b8171afc663068cc192f2bcab20f1b8c9
 
 FROM ${BUILD_FROM} AS builder
 
@@ -95,7 +95,9 @@ ARG GANESHA_VERSION=9.14
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
+# The launcher uses jq for configuration and does not need tempio.
 RUN apt-get update \
+    && apt-get upgrade -y \
     && apt-get install -y --no-install-recommends \
         libattr1 \
         libacl1 \
@@ -105,6 +107,7 @@ RUN apt-get update \
         liburcu8t64 \
         libuuid1 \
     && rm -rf /var/lib/apt/lists/* \
+    && rm -f /usr/bin/tempio \
     && install -d -m 0750 /etc/ganesha /run/ganesha /var/lib/nfs/ganesha
 
 COPY --from=builder /ganesha-root/usr/bin/ganesha.nfsd /usr/bin/ganesha.nfsd

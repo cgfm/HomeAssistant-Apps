@@ -5,12 +5,14 @@ name: NFS server CI
     paths:
       - "NFS-Ganesha-App/**"
       - ".github/workflows/nfs-server-ci.yml"
+      - ".github/workflows/nfs-server-release.yml"
   push:
     branches:
       - master
     paths:
       - "NFS-Ganesha-App/**"
       - ".github/workflows/nfs-server-ci.yml"
+      - ".github/workflows/nfs-server-release.yml"
 
 permissions:
   contents: read
@@ -52,7 +54,7 @@ jobs:
       - name: Set up Buildx
         uses: docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f  # v3
       - name: Build ${{ matrix.platform }}
-        uses: docker/build-push-action@10e90e3645eae34f1e60eeb005ba3a3d33f178e8  # v6
+        uses: docker/build-push-action@53b7df96c91f9c12dcc8a07bcb9ccacbed38856a  # v7.3.0
         with:
           context: NFS-Ganesha-App/nfs_server
           platforms: ${{ matrix.platform }}
@@ -70,7 +72,7 @@ jobs:
       - name: Run container smoke tests
         run: bash NFS-Ganesha-App/tests/container-smoke.sh ha-nfs-ganesha:smoke
       - name: Scan runtime image
-        uses: aquasecurity/trivy-action@dc5a429b52fcf669ce959baa2c2dd26090d2a6c4  # v0.32.0
+        uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25  # v0.36.0
         with:
           image-ref: ha-nfs-ganesha:smoke
           format: table
