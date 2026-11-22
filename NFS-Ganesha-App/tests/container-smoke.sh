@@ -48,7 +48,7 @@ docker run --detach \
   "${IMAGE}" >/dev/null
 
 for _ in {1..30}; do
-  if docker logs "${SERVER_NAME}" 2>&1 | grep -Fq 'NFS SERVER INITIALIZED'; then
+  if docker logs "${SERVER_NAME}" 2>&1 | grep -F 'NFS SERVER INITIALIZED' >/dev/null; then
     break
   fi
   if [[ "$(docker inspect --format '{{.State.Status}}' "${SERVER_NAME}")" == "exited" ]]; then
@@ -58,7 +58,7 @@ for _ in {1..30}; do
   sleep 1
 done
 
-docker logs "${SERVER_NAME}" 2>&1 | grep -Fq 'NFS SERVER INITIALIZED'
+docker logs "${SERVER_NAME}" 2>&1 | grep -F 'NFS SERVER INITIALIZED' >/dev/null
 test "$(docker inspect --format '{{json .HostConfig.CapAdd}}' "${SERVER_NAME}")" = '["CAP_DAC_READ_SEARCH"]'
 test "$(docker inspect --format '{{json .HostConfig.CapDrop}}' "${SERVER_NAME}")" = '["ALL"]'
 test "$(docker inspect --format '{{.HostConfig.Privileged}}' "${SERVER_NAME}")" = 'false'
@@ -91,6 +91,6 @@ if [[ "$(docker inspect --format '{{.State.Running}}' "${SERVER_NAME}")" == "tru
   printf 'invalid options unexpectedly left the server running\n' >&2
   exit 1
 fi
-docker logs "${SERVER_NAME}" 2>&1 | grep -Fq 'allowed_clients must contain at least one IPv4 address or CIDR network'
+docker logs "${SERVER_NAME}" 2>&1 | grep -F 'allowed_clients must contain at least one IPv4 address or CIDR network' >/dev/null
 
 printf 'container smoke checks passed\n'
